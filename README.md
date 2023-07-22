@@ -1,4 +1,4 @@
-# Mikeymouse23
+# Jerry
 Don't let your PC fall asleep
 V1.3 comes with new updates:
 - New Icon of the app.
