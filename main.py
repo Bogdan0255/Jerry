@@ -3,15 +3,14 @@ import time
 import tkinter as tk
 from tkinter import filedialog, messagebox, scrolledtext
 from tkinter import ttk
+from start_button import start_mouse_movement, stop_mouse_movement
 import json
 
-# Disable the PyAutoGUI fail-safe
+# fail test disable + time define
 pyautogui.FAILSAFE = False
+default_interval = 60  # in seconds
 
-# Default time interval in seconds
-default_interval = 60  # 1 minute
-
-# Configuration file path
+# Config path
 config_file = "config.json"
 
 # Define the star size
@@ -90,7 +89,7 @@ def move_mouse():
         pyautogui.dragRel(star_radius, -star_radius, duration=0.1)
         pyautogui.dragRel(star_radius, star_radius, duration=0.1)
 
-    # Display a message
+    # Display message
     status_label.config(text="Mouse moved successfully!")
 
     # Schedule the next mouse movement
@@ -170,10 +169,8 @@ window.title("Jerry's app")
 # Set the window icon
 window.iconbitmap("C:\\Users\\bogdan.DESKTOP-4CRLMLK\\PycharmProjects\\mover231\\icon.ico") # Replace "path_to_icon.ico" with the path to your icon file
 
-# Set a fixed window size
 window.geometry("300x300")
 
-# Use a different theme for a more visually appealing appearance
 style = ttk.Style()
 style.theme_use("clam")
 
@@ -193,18 +190,15 @@ help_menu = tk.Menu(menu_bar, tearoff=0)
 menu_bar.add_cascade(label="Help", menu=help_menu)
 help_menu.add_command(label="About", command=show_help)
 
-# Create a settings frame
 settings_frame = ttk.LabelFrame(window, text="Settings")
 settings_frame.pack(pady=10)
 
-# Create the interval label and entry
 interval_label = ttk.Label(settings_frame, text="Mouse Movement Interval (seconds):")
 interval_label.pack()
 interval = tk.IntVar(value=default_interval)
 interval_entry = ttk.Entry(settings_frame, textvariable=interval, width=10)
 interval_entry.pack()
 
-# Create the direction label and dropdown
 direction_label = ttk.Label(settings_frame, text="Mouse Movement Direction:")
 direction_label.pack()
 direction_var = tk.StringVar()
@@ -237,5 +231,4 @@ stop_button.pack(side=tk.LEFT)
 click_button = ttk.Button(button_frame, text="Left Click", command=perform_left_click, state=tk.DISABLED)
 click_button.pack(side=tk.LEFT)
 
-# Start the Tkinter event loop
 window.mainloop()
